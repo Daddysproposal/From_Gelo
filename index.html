@@ -577,8 +577,8 @@ btnNo.addEventListener('click', function(){
 
   if(transitioning) return;
 
-  // If already final pink state
-  if(noIdx >= noTexts.length){
+  // If we already finished all texts
+  if(noIdx === noTexts.length){
     stopBgMusic();
     showResponse();
     setTimeout(()=>{
@@ -587,24 +587,20 @@ btnNo.addEventListener('click', function(){
     return;
   }
 
-  // flash animation
   this.classList.remove('flash');
   void this.offsetWidth;
   this.classList.add('flash');
 
-  if(noIdx < noTexts.length){
+  this.textContent = noTexts[noIdx];
 
-    this.textContent = noTexts[noIdx];
-
-    // If this is the LAST message
-    if(noIdx === noTexts.length - 1){
-      this.className = "btn btn-yes";
-    }
-
-    noIdx++;
+  // If THIS is the last message → turn pink
+  if(noIdx === noTexts.length - 1){
+    this.className = "btn btn-yes";
   }
 
+  noIdx++;
 });
+
 
 
 // ─── SUBTLE MOUSE PARALLAX ───
